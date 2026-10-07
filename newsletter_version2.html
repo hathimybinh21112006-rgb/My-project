@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter – Phiên bản 2: Warm Terracotta</title>
+  <!-- Bootstrap 5.3 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* =============================================
+       Bộ màu 2 – Warm Terracotta (Adobe Color · Analogous)
+       Nguồn cảm hứng: https://color.adobe.com/
+       Quy tắc phối: Tương đồng (Analogous) – nhóm màu ấm
+       --primary   : #C0392B  (Đỏ Terracotta – Ruby)
+       --secondary : #E67E22  (Cam đất – Carrot)
+       --accent    : #F1C40F  (Vàng kem – Sunflower)
+       --light-bg  : #FDF3E7  (Kem nhạt)
+       --text-main : #2C1A0E  (Nâu đậm gần đen)
+       --text-muted: #7D5A45  (Nâu trung)
+    ============================================= */
+    :root {
+      --primary:        #C0392B;
+      --primary-dark:   #96281B;
+      --secondary:      #E67E22;
+      --secondary-dark: #CA6F1E;
+      --accent:         #F1C40F;
+      --accent-dark:    #D4AC0D;
+      --light-bg:       #FDF3E7;
+      --card-bg:        #FEF9F0;
+      --text-main:      #2C1A0E;
+      --text-muted:     #7D5A45;
+      --white:          #FFFFFF;
+    }
+
+    /* ---------- Base ---------- */
+    body {
+      background-color: var(--light-bg);
+      color: var(--text-main);
+      font-family: "Georgia", "Times New Roman", serif;
+    }
+
+    /* ---------- Wrapper ---------- */
+    .newsletter-wrapper {
+      max-width: 680px;
+      margin: 2.5rem auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 30px rgba(192, 57, 43, 0.16);
+    }
+
+    /* ---------- Top stripe ---------- */
+    .nl-stripe {
+      height: 6px;
+      background: linear-gradient(
+        90deg,
+        var(--primary) 0%,
+        var(--secondary) 50%,
+        var(--accent) 100%
+      );
+    }
+
+    /* ---------- Header ---------- */
+    .nl-header {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 2.5rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      background-image: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .nl-header::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 36px;
+      background: var(--card-bg);
+      clip-path: ellipse(60% 100% at 50% 100%);
+    }
+    .nl-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    .nl-logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .nl-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      font-family: "Georgia", serif;
+      font-style: italic;
+    }
+    .nl-header p {
+      opacity: 0.85;
+      font-size: 0.9rem;
+      margin-bottom: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      font-style: normal;
+    }
+
+    /* ---------- Body ---------- */
+    .nl-body {
+      background-color: var(--card-bg);
+      padding: 2.5rem 2rem 1.5rem;
+    }
+
+    /* ---------- Intro ---------- */
+    .nl-intro-title {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 0.6rem;
+      font-family: "Georgia", serif;
+    }
+    .nl-intro-text {
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-size: 0.95rem;
+    }
+
+    /* ---------- CTA Button ---------- */
+    .btn-nl-primary {
+      background-color: var(--primary);
+      border-color: var(--primary);
+      color: var(--white);
+      font-weight: 600;
+      padding: 0.6rem 1.6rem;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.2s, border-color 0.2s;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      letter-spacing: 0.5px;
+    }
+    .btn-nl-primary:hover {
+      background-color: var(--primary-dark);
+      border-color: var(--primary-dark);
+      color: var(--white);
+    }
+    .btn-nl-secondary {
+      background-color: transparent;
+      border: 2px solid var(--secondary);
+      color: var(--secondary);
+      font-weight: 600;
+      padding: 0.55rem 1.6rem;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    .btn-nl-secondary:hover {
+      background-color: var(--secondary);
+      color: var(--white);
+    }
+
+    /* ---------- Divider ---------- */
+    .nl-divider {
+      border: none;
+      border-top: 1px solid #E8D5C0;
+      margin: 2rem 0;
+    }
+
+    /* ---------- Feature cards ---------- */
+    .feature-card {
+      border: none;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .feature-card-1 {
+      background-color: var(--secondary);
+      color: var(--white);
+    }
+    .feature-card-2 {
+      background-color: var(--accent);
+      color: var(--text-main);
+    }
+    .feature-card .card-title {
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    .feature-card .card-text {
+      font-size: 0.87rem;
+      line-height: 1.6;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    .feature-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ---------- Quote block ---------- */
+    .nl-quote {
+      border-left: 4px solid var(--secondary);
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      background: var(--white);
+      border-radius: 0 8px 8px 0;
+    }
+    .nl-quote blockquote {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin: 0 0 0.4rem;
+      line-height: 1.7;
+    }
+    .nl-quote cite {
+      font-size: 0.82rem;
+      font-style: normal;
+      color: var(--primary);
+      font-weight: 600;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+
+    /* ---------- Stats row ---------- */
+    .stats-wrapper {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      flex: 1;
+      min-width: 110px;
+      text-align: center;
+      background: var(--white);
+      border-radius: 8px;
+      padding: 1rem 0.5rem;
+      border-top: 3px solid var(--primary);
+    }
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      font-family: "Georgia", serif;
+      display: block;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+
+    /* ---------- Footer ---------- */
+    .nl-footer {
+      background-color: var(--primary-dark);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.82rem;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+    .nl-footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .nl-footer a:hover {
+      text-decoration: underline;
+    }
+    .nl-footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+
+<div class="newsletter-wrapper">
+  <div class="nl-stripe"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="nl-header">
+    <div class="nl-logo">
+      <span class="nl-logo-dot"></span>
+      TRELLO
+      <span class="nl-logo-dot"></span>
+    </div>
+    <h1>Câu chuyện tháng Mười</h1>
+    <p>Cảm hứng và chiến lược cho mỗi đội nhóm thành công</p>
+  </header>
+
+  <!-- ===== BODY ===== -->
+  <main class="nl-body">
+
+    <!-- Intro -->
+    <h2 class="nl-intro-title">Xin chào, những người bận rộn 👋</h2>
+    <p class="nl-intro-text">
+      Tháng Mười là thời điểm hoàn hảo để nhìn lại hành trình và chuẩn bị cho
+      những bước tiến mới. Bản tin kỳ này mang đến góc nhìn thực tế từ những
+      đội nhóm đã đạt được điều đặc biệt với Trello.
+    </p>
+    <a href="#" class="btn-nl-primary me-2 mb-3">Đọc ngay</a>
+    <a href="#" class="btn-nl-secondary mb-3">Xem thêm</a>
+
+    <hr class="nl-divider" />
+
+    <!-- Stats -->
+    <h3 class="nl-intro-title" style="font-size: 1.1rem;">Con số ấn tượng</h3>
+    <div class="stats-wrapper">
+      <div class="stat-item">
+        <span class="stat-number">2M+</span>
+        <div class="stat-label">Đội nhóm đang dùng Trello</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">40%</span>
+        <div class="stat-label">Giảm thời gian họp hành</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">5★</span>
+        <div class="stat-label">Đánh giá từ người dùng</div>
+      </div>
+    </div>
+
+    <!-- Quote -->
+    <div class="nl-quote">
+      <blockquote>
+        "Kể từ khi dùng Trello, cả đội tôi biết chính xác ai đang làm gì,
+        deadline nào sắp đến – và chúng tôi không còn bị mất task trong biển email nữa."
+      </blockquote>
+      <cite>— Minh Anh, Project Manager tại Nimbus Creative</cite>
+    </div>
+
+    <hr class="nl-divider" />
+
+    <!-- Feature cards -->
+    <h3 class="nl-intro-title" style="font-size: 1.1rem;">Tính năng tuần này</h3>
+    <div class="row g-3 mb-4">
+      <div class="col-sm-6">
+        <div class="card feature-card feature-card-1 h-100">
+          <div class="card-body">
+            <div class="feature-icon">🗓️</div>
+            <h4 class="card-title">Timeline View</h4>
+            <p class="card-text">
+              Trực quan hóa tiến độ dự án theo dạng biểu đồ Gantt – kéo thả
+              deadline ngay trên bảng mà không cần rời khỏi Trello.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card feature-card feature-card-2 h-100">
+          <div class="card-body">
+            <div class="feature-icon">🔗</div>
+            <h4 class="card-title">Card Mirroring</h4>
+            <p class="card-text">
+              Đồng bộ một card sang nhiều bảng khác nhau. Thay đổi ở một nơi,
+              cập nhật đồng bộ tất cả – không lo thông tin bị lệch.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="nl-footer">
+    <div class="nl-footer-links">
+      <a href="#">Hủy đăng ký</a>
+      <a href="#">Chính sách bảo mật</a>
+      <a href="#">Liên hệ</a>
+    </div>
+    <p class="mb-0">© 2026 Trello, Inc. · 55 Broadway, New York, NY 10006</p>
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

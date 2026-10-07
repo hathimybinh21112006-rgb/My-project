@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Newsletter – Phiên bản 1: Ocean Breeze</title>
+  <!-- Bootstrap 5.3 -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    /* =============================================
+       Bộ màu 1 – Ocean Breeze (Adobe Color · Complementary)
+       Nguồn cảm hứng: https://color.adobe.com/
+       Quy tắc phối: Bổ túc (Complementary)
+       --primary   : #1B4F72  (Xanh dương đậm – Navy)
+       --secondary : #1ABC9C  (Xanh ngọc – Emerald Teal)
+       --accent    : #F39C12  (Cam vàng – Saffron)
+       --light-bg  : #EAF4FB  (Xanh nhạt pastel)
+       --text-main : #1A252F  (Gần đen)
+       --text-muted: #5D6D7E  (Xám xanh)
+    ============================================= */
+    :root {
+      --primary:        #1B4F72;
+      --primary-dark:   #12354E;
+      --secondary:      #1ABC9C;
+      --secondary-dark: #148F77;
+      --accent:         #F39C12;
+      --accent-dark:    #D68910;
+      --light-bg:       #EAF4FB;
+      --text-main:      #1A252F;
+      --text-muted:     #5D6D7E;
+      --white:          #FFFFFF;
+    }
+
+    /* ---------- Base ---------- */
+    body {
+      background-color: var(--light-bg);
+      color: var(--text-main);
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+
+    /* ---------- Wrapper ---------- */
+    .newsletter-wrapper {
+      max-width: 680px;
+      margin: 2.5rem auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 30px rgba(27, 79, 114, 0.18);
+    }
+
+    /* ---------- Header ---------- */
+    .nl-header {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 2.5rem 2rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+    .nl-header::after {
+      content: "";
+      display: block;
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background: var(--white);
+      clip-path: ellipse(55% 100% at 50% 100%);
+    }
+    .nl-logo {
+      display: inline-block;
+      background: var(--secondary);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 2px;
+      padding: 0.35rem 1.2rem;
+      border-radius: 6px;
+      margin-bottom: 1.2rem;
+    }
+    .nl-header h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.5px;
+    }
+    .nl-header p {
+      opacity: 0.8;
+      font-size: 0.95rem;
+      margin-bottom: 0;
+    }
+
+    /* ---------- Body ---------- */
+    .nl-body {
+      background: var(--white);
+      padding: 2.5rem 2rem 1.5rem;
+    }
+
+    /* ---------- Intro section ---------- */
+    .nl-intro-title {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 0.6rem;
+    }
+    .nl-intro-text {
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ---------- CTA Button ---------- */
+    .btn-nl-primary {
+      background-color: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+      font-weight: 600;
+      padding: 0.6rem 1.6rem;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.2s, border-color 0.2s;
+    }
+    .btn-nl-primary:hover {
+      background-color: var(--accent-dark);
+      border-color: var(--accent-dark);
+      color: var(--white);
+    }
+
+    /* ---------- Divider ---------- */
+    .nl-divider {
+      border: none;
+      border-top: 2px solid var(--light-bg);
+      margin: 2rem 0;
+    }
+
+    /* ---------- Feature cards ---------- */
+    .feature-card {
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .feature-card-1 {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+    .feature-card-2 {
+      background-color: var(--secondary);
+      color: var(--white);
+    }
+    .feature-card .card-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+    .feature-card .card-text {
+      font-size: 0.88rem;
+      opacity: 0.9;
+    }
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ---------- Highlight band ---------- */
+    .nl-highlight {
+      background: var(--light-bg);
+      border-left: 4px solid var(--secondary);
+      border-radius: 6px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .nl-highlight p {
+      margin: 0;
+      font-size: 0.93rem;
+      color: var(--text-muted);
+    }
+    .nl-highlight strong {
+      color: var(--primary);
+    }
+
+    /* ---------- Footer ---------- */
+    .nl-footer {
+      background-color: var(--primary-dark);
+      color: rgba(255,255,255,0.75);
+      text-align: center;
+      padding: 1.5rem 2rem;
+      font-size: 0.82rem;
+    }
+    .nl-footer a {
+      color: var(--secondary);
+      text-decoration: none;
+    }
+    .nl-footer a:hover {
+      text-decoration: underline;
+    }
+    .nl-footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    /* ---------- Badge ---------- */
+    .badge-nl {
+      background-color: var(--accent);
+      color: var(--white);
+      font-size: 0.72rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 600;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+<div class="newsletter-wrapper">
+
+  <!-- ===== HEADER ===== -->
+  <header class="nl-header">
+    <div class="nl-logo">TRELLO</div>
+    <h1>Bản tin tháng 10</h1>
+    <p>Những cập nhật mới nhất dành cho đội nhóm của bạn</p>
+  </header>
+
+  <!-- ===== BODY ===== -->
+  <main class="nl-body">
+
+    <!-- Intro -->
+    <h2 class="nl-intro-title">
+      Chào mừng bạn đến với bản tin! 🎉
+    </h2>
+    <p class="nl-intro-text">
+      Tháng này chúng tôi mang đến những tính năng hữu ích giúp đội nhóm của bạn
+      làm việc hiệu quả hơn, giao tiếp rõ ràng hơn và đạt mục tiêu nhanh hơn bao giờ hết.
+    </p>
+    <a href="#" class="btn-nl-primary mb-4">Khám phá ngay →</a>
+
+    <hr class="nl-divider" />
+
+    <!-- Highlight quote -->
+    <div class="nl-highlight">
+      <p>
+        <strong>💡 Mẹo của tuần:</strong> Sử dụng Power-Up Lịch của Trello để
+        đồng bộ deadline lên Google Calendar và không bao giờ bỏ lỡ một hạn chót nào nữa.
+      </p>
+    </div>
+
+    <!-- Feature cards -->
+    <h3 class="fw-bold mb-3" style="color: var(--text-main); font-size: 1.1rem;">
+      Tính năng nổi bật
+      <span class="badge-nl">Mới</span>
+    </h3>
+    <div class="row g-3 mb-4">
+      <div class="col-sm-6">
+        <div class="card feature-card feature-card-1 h-100">
+          <div class="card-body">
+            <div class="feature-icon">📋</div>
+            <h4 class="card-title">Giao diện Board mới</h4>
+            <p class="card-text">
+              Trải nghiệm bảng Kanban được cải thiện với thanh lọc thông minh
+              và chế độ xem nhóm theo người phụ trách.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card feature-card feature-card-2 h-100">
+          <div class="card-body">
+            <div class="feature-icon">⚡</div>
+            <h4 class="card-title">Automation nâng cao</h4>
+            <p class="card-text">
+              Tự động hóa các tác vụ lặp lại với trình kích hoạt và hành động
+              được mở rộng trong Butler – không cần biết lập trình.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Second article -->
+    <hr class="nl-divider" />
+    <h2 class="nl-intro-title">Câu chuyện thành công</h2>
+    <p class="nl-intro-text">
+      Đội ngũ thiết kế tại <strong>Studio Nord</strong> đã giảm 40% thời gian họp
+      nhờ tổ chức toàn bộ dự án trên Trello. Khám phá hành trình của họ và tìm hiểu
+      cách áp dụng cho đội nhóm của bạn.
+    </p>
+    <a href="#" class="btn-nl-primary">Đọc câu chuyện</a>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="nl-footer">
+    <div class="nl-footer-links">
+      <a href="#">Hủy đăng ký</a>
+      <a href="#">Chính sách bảo mật</a>
+      <a href="#">Liên hệ</a>
+    </div>
+    <p class="mb-0">© 2026 Trello, Inc. · 55 Broadway, New York, NY 10006</p>
+  </footer>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
